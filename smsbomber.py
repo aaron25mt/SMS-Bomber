@@ -34,12 +34,9 @@ def spam(info):
 		email.ehlo()
 		email.starttls()
 		email.login(username, password)
-		for time in range(times):
+		for time in range(int(times)):
 			email.sendmail(text, generateEmail(number, carrier), text)
 		email.quit()
 		print("'{text}' was successfully sent to {number} {times} times!".format(text=text, number=number, times=times))
 	except KeyError:
-		print("Carrier not found. Try again.")
-
-if __name__ == "__main__":
-	spam(query())
+		raise KeyError("Carrier not found.")
